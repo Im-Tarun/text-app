@@ -3,19 +3,19 @@ import { auth } from "@/lib/auth";
 import UserModel from "@/model/User.model";
 import mongoose from "mongoose";
 import { User } from "next-auth";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 
 
-export async function PUT(
-  request: NextRequest ,
-  {params} : { params: { messageid: string } }
+export async function DELETE(
+    request: Request,
+    { params }: { params: { messageid: string } }
 ) {
-
+  
+  const messageId = params.messageid;
   dbConnection();
   const session = await auth();
   const user: User = session?.user as User;
-  const {messageid } = params;
 
   if (!session || !session.user) {
     return NextResponse.json(
@@ -30,7 +30,7 @@ export async function PUT(
   }
 
   const userMongoId = new mongoose.Types.ObjectId(user._id);
-  const messageMongoId = new mongoose.Types.ObjectId(messageid)
+  const messageMongoId = new mongoose.Types.ObjectId(messageId)
   try {
     const updatedUser = await UserModel.updateOne(
       {_id: userMongoId},

@@ -5,6 +5,11 @@ import mongoose from "mongoose";
 import { User } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
+type ParamsContext = {
+  params:{
+    messageid: string
+    }
+}
 
 export async function DELETE(
   request: NextRequest ,

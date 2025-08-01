@@ -3,10 +3,11 @@ import { auth } from "@/lib/auth";
 import UserModel from "@/model/User.model";
 import mongoose from "mongoose";
 import { User } from "next-auth";
+import { NextRequest, NextResponse } from "next/server";
 
 
 export async function DELETE(
-  req: Request,
+  request: NextRequest ,
   context : { params: { messageid: string } }
 ) {
 
@@ -16,7 +17,7 @@ export async function DELETE(
   const {messageid : messageId} = context.params;
 
   if (!session || !session.user) {
-    return Response.json(
+    return NextResponse.json(
       {
         success: false,
         message: "Authentication not found",
@@ -36,7 +37,7 @@ export async function DELETE(
     );
     if(updatedUser.modifiedCount == 0){
 
-      return Response.json(
+      return NextResponse.json(
       {
         success: false,
         message: "Message not found or already deleted",
@@ -46,7 +47,7 @@ export async function DELETE(
       });
     }
     
-    return Response.json(
+    return NextResponse.json(
       {
         success: true,
         message: "Message deleted succefully",
@@ -57,7 +58,7 @@ export async function DELETE(
     );
   } catch (error) {
     console.error("Internal server error ", error);
-    return Response.json(
+    return NextResponse.json(
       {
         success: false,
         message: "Internal server error",

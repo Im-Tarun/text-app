@@ -18,7 +18,7 @@ export async function sendEmailVerification(
         if(response.error){
             return {
                 success: false, 
-                message: response?.error?.error 
+                message: "There was a Error in Resend Email server"
             }
         }
         return {

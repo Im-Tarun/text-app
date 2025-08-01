@@ -4,7 +4,6 @@ import {
   CardAction,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -20,10 +19,11 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Trash } from "lucide-react";
-import axios, { Axios, AxiosError } from "axios";
+import axios, { AxiosError } from "axios";
 import { toast } from "sonner";
 import { Message } from "@/model/User.model";
 import { apiResponse } from "@/types/apiResponse";
+
 
 interface MessageCardData{
   message: Message,
@@ -88,4 +88,4 @@ const MessageCard = ({message, onMessageDelete}:MessageCardData)=> {
     </Card>
   );
 }
-export default MessageCard; 
+export default MessageCard;

@@ -14,7 +14,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         identifier: {label: "Email", type: "email"},
         password: {label: "Password", type: "password"}
       },
-      authorize: async (credentials : any): Promise<any>=>{
+      authorize: async (credentials: any): Promise<any> => {
         await dbConnection()
         try {
           const user = await UserModel.findOne({

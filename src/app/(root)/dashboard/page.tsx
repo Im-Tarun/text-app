@@ -30,7 +30,7 @@ const dashboard = () => {
   const form = useForm<z.infer<typeof acceptMsgSchema>>({
     resolver: zodResolver(acceptMsgSchema),
     defaultValues: {
-      isAcceptingMsg: session?.user?.isAcceptingMsg,
+      isAcceptingMsg: session?.user.isAcceptingMsg,
     },
   });
 
@@ -55,7 +55,7 @@ const dashboard = () => {
     } finally {
       setIsSwitchLoading(false);
     }
-  }, [setValue]);
+  }, [isAcceptingMsg]);
 
   const fetchMessages = useCallback(
     async (refresh: boolean = false) => {
@@ -87,7 +87,7 @@ const dashboard = () => {
     if (!session || !session.user) return;
     fetchAcceptMessages();
     fetchMessages();
-  }, [session, fetchAcceptMessages, fetchMessages]);
+  }, [session, setValue]);
 
   const handleSwitch = async () => {
     try {
@@ -123,7 +123,7 @@ const dashboard = () => {
       <h1 className="text-4xl font-bold mb-4">User Dashboard</h1>
 
       <div className="mb-4">
-        <h2 className="text-lg font-semibold mb-2">Copy Your Unique Link</h2>{" "}
+        <h2 className="text-lg font-semibold mb-2">Copy Your Unique Link</h2>
         <div className="flex items-center">
           <p
             onClick={copyToClipboard}

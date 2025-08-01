@@ -74,7 +74,7 @@ const page = () => {
   return (
     <>
       
-    <main className="flex-grow flex flex-col items-center justify-center px-4 md:px-24 py-12 dark:bg-gray-800 dark:text-white ">
+    <main className="flex-grow flex flex-col items-center justify-center px-4 md:px-24 pb-5 pt-14 dark:bg-gray-800 dark:text-white ">
         <section className="text-center mb-8 md:mb-12">
           <h1 className="text-3xl md:text-5xl font-bold">
             Welcome To A Public Profile;
@@ -116,10 +116,10 @@ const page = () => {
         <section className='my-10 w-full m-4 '>
           <Button className='block mb-4' onClick={()=>getAISuggestions()} >Suggest Messages</Button>
           <span className=' font-semibold '>Click on Any Message below to select </span>
-          <div className='flex flex-col gap-4 border-2 my-5 p-4 dark:bg-[#101828] rounded-sm'>
+          <div className='flex flex-col gap-5 border-2 my-5 p-5 dark:bg-[#101828] rounded-sm'>
             <h2 className='text-xl font-bold '>Messages</h2>
             {
-              suggestions.map((elem, ind) => <p key={ind} onClick={()=> setValue("content" ,elem)} className='border-2 cursor-pointer text-center py-2 rounded-sm capitalize'>{elem}</p>)
+              suggestions.map((elem, ind) => <p key={ind} onClick={()=> setValue("content" ,elem)} className='border-2 cursor-pointer text-center py-3 rounded-sm capitalize'>{elem}</p>)
             }
           </div>
         </section>

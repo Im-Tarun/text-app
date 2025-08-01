@@ -14,8 +14,8 @@ export async function sendEmailVerification(
             subject: 'Text App | Verification code ',
             react: EmailVerification({username, otp: verifyCode }),
         });
-        console.log(response)
         if(response.error){
+            console.log(response.error)
             return {
                 success: false, 
                 message: "There was a Error in Resend Email server"

@@ -1,3 +1,4 @@
+"user client"
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -31,7 +32,7 @@ export default async function RootLayout({
     <html lang="en">
       <AuthProvider session={session}>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-`}
         >
           <ThemeProvider
             attribute="class"

@@ -1,11 +1,12 @@
 "use client"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
-import { Mail } from "lucide-react"
+import { Dot, Mail } from "lucide-react"
 import messages from "@/messages.json"
 import React from "react"
 import Autoplay from "embla-carousel-autoplay"
 import Link from "next/link"
+import { Button } from "@/components/ui/button"
 
 export default function Home() {
   const plugin = React.useRef(
@@ -21,6 +22,7 @@ export default function Home() {
           <p className="mt-3 md:mt-4 text-base md:text-lg">
             Anno Text - Where your identity remains a secret.
           </p>
+          <Link href={"/user/main_user"} className="underline py-1" target="_blank">Test by texting main_user </Link>
         </section>
 
         {/* Carousel for Messages */}
@@ -51,10 +53,13 @@ export default function Home() {
         </Carousel>
       </main>
 
-      <footer className="text-center p-4 md:p-6 bg-[#c6c6c6] dark:bg-gray-900 dark:text-white fixed bottom-0 w-full">
+      <footer className="text-center p-2 md:p-4 bg-[#c6c6c6] dark:bg-gray-900 dark:text-white fixed bottom-0 w-full">
         <div>© 2025 Anno Text. All rights reserved.</div>
-        <Link href={"#"}> Tarun Yaduwanshi </Link>
-        <Link href={"#"}> Github </Link>
+        <div className="flex items-center justify-center">
+          <Button variant={"link"} className="h-1" asChild><Link href={"linkedin.com/in/tarun-yaduwanshi"}> Tarun Yaduwanshi </Link></Button>
+          <Dot className="text-black"/>
+          <Button variant={"link"} className="h-1" asChild><Link href={"https://github.com/Im-Tarun"}> Github </Link></Button>
+        </div>
       </footer>
     </>
   );

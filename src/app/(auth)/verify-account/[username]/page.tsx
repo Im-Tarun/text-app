@@ -40,7 +40,7 @@ const verifyAccount = () => {
           username : params.username,
           verifyCode: data.otp
         })
-        router.replace("/dasboard")
+        router.replace("/dashboard")
 
         toast.success("Account verified successfully",{
           description: response.data?.message
@@ -59,8 +59,8 @@ const verifyAccount = () => {
 
 
   return (
-    <div className="bg-gray-100 flex justify-center items-center min-h-screen ">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
+    <div className="bg-gray-100 text-black flex justify-center items-center min-h-screen dark:bg-[#1e2939] dark:text-white ">
+      <div className="w-full max-w-md p-8 space-y-8  dark:bg-[#101828] bg-white rounded-lg shadow-md">
         <div className="text-center">
           <h1 className="capitalize text-4xl font-extrabold tracking-tight lg:text-5xl mb-6 ">
             join text-app

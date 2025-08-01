@@ -16,7 +16,7 @@ const Navbar = () => {
   return (
     <header className=" px-8 md:px-8  py-3 bg-[#d6d6d6] shadow-md text-black dark:bg-[#101828] dark:text-white">
       <nav className="flex  justify-between items-center gap-5 ">
-        <Link className="font-extrabold text-2xl" href={"/"}>
+        <Link className="font-extrabold text-xl sm:text-2xl" href={"/"}>
           Anno-Text
         </Link>
 
@@ -31,9 +31,11 @@ const Navbar = () => {
             <>
               
                 <div className="capitalize text-xl cursor-pointer">
+                  <Link href={"/dashboard"}>
                   {session.user?.name || session.user.username}
+                  </Link>
                 </div>
-                <Button variant={"secondary"} asChild>
+                <Button className="sm:block hidden " variant={"secondary"} asChild>
                   <Link href={'/dashboard'} >
                   Dashboard
                 </Link>

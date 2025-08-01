@@ -39,6 +39,8 @@ const signInPage = () => {
     },
   });
 
+  const { setValue} = form;
+
   const onSubmit = async (data: z.infer<typeof signInSchema>) => {
     try {
       const response = await signIn("credentials", {
@@ -97,6 +99,11 @@ const signInPage = () => {
             </Button>
           </CardAction>
         </CardHeader>
+        <div className="flex justify-evenly gap-5 items-baseline border p-2 mx-2 rounded-md">
+          <div>Example User:</div>
+          <Button className="hover:bg-gray-200" variant={"secondary"} onClick={()=> setValue("identifier", "main_user")}>main_user</Button>
+          <Button className="hover:bg-gray-200" variant={"secondary"} onClick={()=> setValue("password", "user123")}>user123</Button>
+        </div>
         <CardContent>
           <Form {...form}>
             <form

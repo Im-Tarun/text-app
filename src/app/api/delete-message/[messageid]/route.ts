@@ -7,7 +7,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 
 
-export async function DELETE(
+export async function PUT(
   request: NextRequest ,
   {params} : { params: { messageid: string } }
 ) {

@@ -2,14 +2,14 @@ import dbConnection from "@/lib/dbConnect";
 import UserModel from "@/model/User.model";
 import bcrypt from "bcrypt"
 import { sendEmailVerification } from "@/helpers/sendVerification";
-import crypto from "crypto"
+import { randomInt } from "crypto";
 
 
 export async function POST(req:Request) {
     await dbConnection()
     try {
         const {username, email, password} = await req.json()
-        const otp = crypto.randomInt(0, Math.pow(10, 6)).toString().padStart(6, "0");
+        const otp = randomInt(0, 1000000).toString().padStart(6, "0");
         //checking if the username is already taken by a verified person
         //if username is take but account not verified it can be used by newperson
         const userWithVerifiedUsername = await UserModel.findOne({

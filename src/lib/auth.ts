@@ -52,14 +52,14 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       }
       return token
     },
-    async session({session, token}){
-      if(token){
+    async session({ session, token }) {
+      if (token) {
         session.user._id = token._id;
         session.user.username = token.username;
         session.user.isVerified = token.isVerified;
         session.user.isAcceptingMsg = token.isAcceptingMsg;
       }
-      return session
+      return session;
     }
   }, 
   pages:{

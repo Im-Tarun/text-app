@@ -30,7 +30,7 @@ const dashboard = () => {
   const form = useForm<z.infer<typeof acceptMsgSchema>>({
     resolver: zodResolver(acceptMsgSchema),
     defaultValues: {
-      isAcceptingMsg: session?.user.isAcceptingMsg,
+      isAcceptingMsg: session?.user?.isAcceptingMsg,
     },
   });
 
@@ -55,7 +55,7 @@ const dashboard = () => {
     } finally {
       setIsSwitchLoading(false);
     }
-  }, [isAcceptingMsg]);
+  }, [setValue]);
 
   const fetchMessages = useCallback(
     async (refresh: boolean = false) => {
@@ -87,7 +87,7 @@ const dashboard = () => {
     if (!session || !session.user) return;
     fetchAcceptMessages();
     fetchMessages();
-  }, [session, setValue]);
+  }, [session, fetchAcceptMessages, fetchMessages]);
 
   const handleSwitch = async () => {
     try {

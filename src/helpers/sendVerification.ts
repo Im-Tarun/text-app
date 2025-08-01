@@ -18,7 +18,7 @@ export async function sendEmailVerification(
         if(response.error){
             return {
                 success: false, 
-                message: response.error?.error 
+                message: response?.error?.error 
             }
         }
         return {

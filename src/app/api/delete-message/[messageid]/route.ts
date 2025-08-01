@@ -5,21 +5,17 @@ import mongoose from "mongoose";
 import { User } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
-type ParamsContext = {
-  params:{
-    messageid: string
-    }
-}
+
 
 export async function DELETE(
   request: NextRequest ,
-  context : { params: { messageid: string } }
+  {params} : { params: { messageid: string } }
 ) {
 
   dbConnection();
   const session = await auth();
   const user: User = session?.user as User;
-  const {messageid : messageId} = context.params;
+  const {messageid } = params;
 
   if (!session || !session.user) {
     return NextResponse.json(
@@ -34,7 +30,7 @@ export async function DELETE(
   }
 
   const userMongoId = new mongoose.Types.ObjectId(user._id);
-  const messageMongoId = new mongoose.Types.ObjectId(messageId)
+  const messageMongoId = new mongoose.Types.ObjectId(messageid)
   try {
     const updatedUser = await UserModel.updateOne(
       {_id: userMongoId},

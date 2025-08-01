@@ -4,10 +4,15 @@ import UserModel from "@/model/User.model";
 import mongoose from "mongoose";
 import { User } from "next-auth";
 
+type ParamsContext = {
+  params:{
+    messageid: string
+    }
+}
 
 export async function DELETE(
   req: Request,
-  context : { params: { messageid: string } }
+  context : ParamsContext
 ) {
 
   dbConnection();

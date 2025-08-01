@@ -5,14 +5,19 @@ import mongoose from "mongoose";
 import { User } from "next-auth";
 import { NextResponse } from "next/server";
 
+interface Params {
+  messageid: string;
+}
 
+interface Context {
+  params: Params;
+}
 
-export async function DELETE(
-    request: Request,
-    { params }: { params: { messageid: string } }
-) {
+export async function DELETE(request: Request, context: Context) {
   
+  const { params } = context;
   const messageId = params.messageid;
+
   dbConnection();
   const session = await auth();
   const user: User = session?.user as User;
@@ -30,24 +35,24 @@ export async function DELETE(
   }
 
   const userMongoId = new mongoose.Types.ObjectId(user._id);
-  const messageMongoId = new mongoose.Types.ObjectId(messageId)
+  const messageMongoId = new mongoose.Types.ObjectId(messageId);
   try {
     const updatedUser = await UserModel.updateOne(
-      {_id: userMongoId},
-      {$pull:{messages:{_id: messageMongoId}}}
+      { _id: userMongoId },
+      { $pull: { messages: { _id: messageMongoId } } }
     );
-    if(updatedUser.modifiedCount == 0){
-
+    if (updatedUser.modifiedCount == 0) {
       return NextResponse.json(
-      {
-        success: false,
-        message: "Message not found or already deleted",
-      },
-      {
-        status: 404,
-      });
+        {
+          success: false,
+          message: "Message not found or already deleted",
+        },
+        {
+          status: 404,
+        }
+      );
     }
-    
+
     return NextResponse.json(
       {
         success: true,

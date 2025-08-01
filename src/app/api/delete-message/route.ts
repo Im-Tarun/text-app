@@ -5,18 +5,11 @@ import mongoose from "mongoose";
 import { User } from "next-auth";
 import { NextResponse } from "next/server";
 
-interface Params {
-  messageid: string;
-}
 
-interface Context {
-  params: Params;
-}
+export async function PUT(request: Request) {
 
-export async function DELETE(request: Request, context: Context) {
+  const {messageId} = await request.json()
   
-  const { params } = context;
-  const messageId = params.messageid;
 
   dbConnection();
   const session = await auth();

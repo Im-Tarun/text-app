@@ -36,7 +36,9 @@ const MessageCard = ({message, onMessageDelete}:MessageCardData)=> {
     try {
       toast("Deleting this message")
       onMessageDelete(message._id as string)
-      const response = await axios.delete<apiResponse>(`/api/delete-message/${message._id}`);
+      const response = await axios.put<apiResponse>("/api/delete-message",{
+        messageId: message._id
+      });
       toast.success("Success",{
         description: `${response?.data.message}`
       })

@@ -110,7 +110,7 @@ const dashboard = () => {
     return <div className="text-2xl m-8 p-8"> Please login...</div>;
 
   const { username } = session.user as User;
-  const baseUrl = `${window.location.protocol}//${window.location.hostname}:3000`;
+  const baseUrl = `${window.location.protocol}//${window.location.hostname}`;
   const profileUrl = `${baseUrl}/user/${username}`;
 
   const copyToClipboard = () => {
